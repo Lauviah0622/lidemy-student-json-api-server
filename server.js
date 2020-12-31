@@ -1,3 +1,4 @@
+require('dotenv').config()
 const jsonServer = require('json-server')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
