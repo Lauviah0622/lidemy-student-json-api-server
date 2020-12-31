@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "deploy": "npm install && pm2 server.js --name jsonserver"
+    "deploy": "npm install && pm2 start server.js --name jsonserver"
   },
   "author": "",
   "license": "ISC",
