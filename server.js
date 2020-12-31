@@ -11,8 +11,8 @@ const db = router.db
 
 console.log(process.env);
 
-const PORT = 3310 || process.env.PORT
-const jwtSecretKey = process.env.JWT_KEY || 'test_key'
+const PORT = process.env.PORT || 3310;
+const jwtSecretKey = process.env.JWT_KEY || 'test_key';
 
 const ERROR_CODE = {
   INVALID: 1,
