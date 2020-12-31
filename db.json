@@ -20,6 +20,13 @@
       "createdAt": 1604131410650,
       "userId": "005a7c809b02a8",
       "id": 3
+    },
+    {
+      "title": "BOBOBOtitle",
+      "body": "bobobobo",
+      "createdAt": 1604131410700,
+      "userId": "005a7c809b02a8",
+      "id": 4
     }
   ],
   "comments": [
@@ -56,13 +63,19 @@
       "password": "Lidemy"
     },
     {
-      "id": "005a7c809b02a8",
-      "username": "HHH",
-      "nickname": "HHH",
-      "password": "Lidemy"
+      "id": "07a66994a1e542",
+      "username": "gogoname",
+      "nickname": "gogoname",
+      "password": "$2a$08$WO5K/aIYhSppfENevJESG.BVsT04TlggGQNCwbUVQOAk.uS/rzjq2"
+    },
+    {
+      "id": "04c06c7d47e5d7",
+      "username": "peter",
+      "nickname": "peter",
+      "password": "$2a$08$Z665mot8GfZ9PG6Dk3oeGePZ67gOSfs6nN3nVFtsGUX4x0fjFWqsq"
     }
   ],
   "profile": {
-    "name": "Lidemy Student JSON Server API"
+    "name": "Lidemy Student JSON Server API modefied by Lavi"
   }
 }

@@ -1,5 +1,6 @@
 const jsonServer = require('json-server')
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
@@ -35,6 +36,7 @@ server.use((req, res, next) => {
 })
 
 
+// Middelwares
 // 資料驗證
 const validator = requiredFields => (req, res, next) => {
   for (let i = 0; i < requiredFields.length; i++) {
@@ -50,7 +52,7 @@ const validator = requiredFields => (req, res, next) => {
   }
   next()
 }
-
+// 不是 get 的 request 全部擋掉
 const preventEditDefault = (req, res, next) => {
   if (req.method === 'GET') return next()
   if (Number(req.params.id) <= 2) {
@@ -60,7 +62,7 @@ const preventEditDefault = (req, res, next) => {
   }
   next()
 }
-
+// jwt 不合格的都擋掉
 const requireLogin = (req, res, next) => {
   let authHeader = req.headers['authorization'] || ''
   const token = authHeader.replace('Bearer ', '')
@@ -104,7 +106,7 @@ server.post('/register', (req, res, next) => {
       id: userId,
       username: req.body.username,
       nickname: req.body.nickname,
-      password: 'Lidemy',
+      password: bcrypt.hashSync(req.body.password, 8),
     })
     .write()
 
@@ -122,10 +124,18 @@ server.post('/login', (req, res, next) => {
   }
 
   const user = db.get('users')
-    .find({ username, password })
+    .find({username})
     .value()
 
+  // 帳號錯誤
   if (!user) {
+    res.status(400)
+    return res.json(makeError(ERROR_CODE.INVALID, "username or password is invalid"))
+  }
+
+  const comparePassword = bcrypt.compareSync(password, user.password)
+  // 密碼錯誤
+  if (!comparePassword) {
     res.status(400)
     return res.json(makeError(ERROR_CODE.INVALID, "username or password is invalid"))
   }
